@@ -19,17 +19,26 @@
 // ==/UserScript==
 
 (function() {
-    'use strict';
-
-  if (document.getElementById('thanks_button_container') !== null) {
-    postador_thank_upload(document.getElementById('qr_threadid').value);
-    console.log('Upload agradecido');
-	bypasswindowclose();    
-  } else {
-    console.log('Esse upload já foi agradecido!');
-  }   
+   'use strict';
   
-  function bypasswindowclose() {
-	console.log('entrei na função bypasswindowclose();');
-  }
+   const uploadId = document.getElementById('qr_threadid').value;
+
+   if (document.getElementById('thanks_button_container') !== null) {
+      postador_thank_upload(uploadId);
+	  bypasswindowclose();    
+   } else {
+      console.log('Esse upload já foi agradecido!');
+   }   
+  
+   function bypasswindowclose() {
+      function closeWindow() {
+         setTimeout(function() {
+            window.opener = null;
+            window.open('', '_self', '');
+            window.close();
+            console.log('%c CLOSE', uploadId);
+         }, 3000);
+      }
+      window.onload = closeWindow();
+   }
 })();
