@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Thanks Upload FW
-// @version      0.1
-// @description  Thanks Upload FW!
-// @author       quertydotcom
-// @match        https://www.tampermonkey.net/faq.php#Q102
-// @grant        none
+// @description  UserScript para agradecer uploads na FW
 // @include     /^http(s)?:\/\/(www\.)?filewarez\.tv/.*$/
+// @copyright   2019, qwertydotcom
+// @author       quertydotcom
+// @version      0.1
+// @license     MIT License
 // @grant       unsafeWindow
 // @grant       window.close
 // @grant       GM_xmlhttpRequest
@@ -23,8 +23,13 @@
 
   if (document.getElementById('thanks_button_container') !== null) {
     postador_thank_upload(document.getElementById('qr_threadid').value);
-    console.log('Upload agradecido');    
+    console.log('Upload agradecido');
+	bypasswindowclose();    
   } else {
     console.log('Esse upload já foi agradecido!');
-  }    
+  }   
+  
+  function bypasswindowclose() {
+	console.log('entrei na função bypasswindowclose();');
+  }
 })();
